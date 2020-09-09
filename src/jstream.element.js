@@ -6,30 +6,18 @@ import jstream from "./jstream.core.js";
 
 (function () {
 
-    function find(selector) {
-        if (selector) {
-            const elem = document.querySelectorAll(selector);
-
-            if (elem.length < 1) {
-                console.warn(`No elements found using ${selector}`);
-                return null;
-            }
-
-            return elem;
+    function find(n) {
+        if (n) {
+            const e = document.querySelectorAll(n);
+            return e.length < 1 ? (console.warn(`No elements found using ${n}`), null) : e
         }
     }
 
-    HTMLElement.prototype.css = function (style) {
-        if (!style) {
-            return getComputedStyle(this);
-        }
-
-        for (const [key, value] of Object.entries(style)) {
-            this.style[key] = value;
-        }
-
-        return this;
-    }
+    HTMLElement.prototype.css = function (t) {
+        if (!t) return getComputedStyle(this);
+        for (const [e, s] of Object.entries(t)) this.style[e] = s;
+        return this
+    };
 
 
     jstream.find = find;

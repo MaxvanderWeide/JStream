@@ -9,7 +9,7 @@ const version = "0.0.1",
             console.error(`Can't initialize stream without class definition`)
         }
         jstream.prototype.c_class = new JStream(_c_class)
-        jstream.prototype.c_class.call()
+        jstream.prototype.c_class.init()
         return jstream.prototype.c_class;
     };
 
@@ -20,5 +20,9 @@ jstream.fn = jstream.prototype = {
 
     constructor: jstream,
 };
+
+JStream.prototype.init = function () {
+    jstream.prototype.c_class.call();
+}
 
 export default jstream;
